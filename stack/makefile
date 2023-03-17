@@ -1,7 +1,7 @@
 CC=clang++
 
 Main: 
-	$(CC) main.cpp -o Main
+	$(CC) main.cpp -o Stack
 
 clean:
-	@rm Main
+	@rm Stack
