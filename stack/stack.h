@@ -31,7 +31,7 @@ class Stack
 	 *
 	 * @return T* Last value in the stack
 	 */
-	T *pop( );
+	T *pop();
 };
 
 template <class T>
@@ -52,7 +52,7 @@ void Stack<T>::push(T value)
 }
 
 template <class T>
-T *Stack<T>::pop( )
+T *Stack<T>::pop()
 {
 	if (this->_top < 0)
 	{
