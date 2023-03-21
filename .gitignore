@@ -1,3 +1,4 @@
 Stack
 *.o
 *.out
+*.d
