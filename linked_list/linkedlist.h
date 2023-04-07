@@ -23,17 +23,16 @@ class LinkedList
 	{
 		if (list._head == nullptr) return os;
 
-		Node<T> *position = list._head.get();
+		std::shared_ptr<Node<T>> position = list._head;
 
 		os << "[ ";
 		while (position->get_next() != nullptr)
 		{
 			os << position->get_value() << ", ";
-			position = position->get_next().get();
+			position = position->get_next();
 		}
 
 		os << position->get_value() << " ]";
-
 		return os;
 	}
 };
@@ -54,9 +53,9 @@ void LinkedList<T>::insert(T value)
 		return;
 	}
 
-	Node<T> *position = _head.get();
+	std::shared_ptr<Node<T>> position = _head;
 	while (position->get_next() != nullptr)
-		position = position->get_next().get();
+		position = position->get_next();
 
 	position->set_next(std::make_shared<Node<T>>(Node<T>(value)));
 	_size++;
@@ -79,13 +78,10 @@ void LinkedList<T>::insert(T value, int index)
 	else if (index == _size) { this->insert(value); }
 	else
 	{
-
 		int pos = 0;
-		Node<T> *pos_node = _head.get();
+		std::shared_ptr<Node<T>> pos_node = _head;
 		while (pos_node->get_next() != nullptr && index > ++pos)
-		{
-			pos_node = pos_node->get_next().get();
-		}
+			pos_node = pos_node->get_next();
 
 		new_node->set_next(pos_node->get_next());
 		pos_node->set_next(new_node);
@@ -101,25 +97,25 @@ void LinkedList<T>::remove(int index)
 	if (index == 0)
 	{
 		std::shared_ptr<Node<T>> old_node = _head;
-		_head = old_node.get()->get_next();
-		old_node.get()->set_next(nullptr);
+		_head = old_node->get_next();
+		old_node->set_next(nullptr);
 	}
 	else if (index == _size)
 	{
-		Node<T> *position = _head.get();
+		std::shared_ptr<Node<T>> position = _head;
 		while (position->get_next()->get_next() != nullptr)
-			position = position->get_next().get();
+			position = position->get_next();
 		position->set_next(nullptr);
 	}
 	else
 	{
 		int pos = 0;
-		Node<T> *pos_node = _head.get();
-		while (pos_node->get_next() != nullptr && index > ++pos)
-			pos_node = pos_node->get_next().get();
+		std::shared_ptr<Node<T>> position = _head;
+		while (position->get_next() != nullptr && index > ++pos)
+			position = position->get_next();
 
-		std::shared_ptr<Node<T>> old_node = pos_node->get_next();
-		pos_node->set_next(old_node.get()->get_next());
+		std::shared_ptr<Node<T>> old_node = position->get_next();
+		position->set_next(old_node->get_next());
 	}
 
 	_size--;
