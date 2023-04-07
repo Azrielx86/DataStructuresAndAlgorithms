@@ -19,4 +19,5 @@ int main()
 
 	std::cout << my_list << "\n";
 	std::cout << "Size: " << my_list.size() << "\n";
+	return 0;
 }

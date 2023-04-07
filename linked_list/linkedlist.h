@@ -6,6 +6,11 @@
 #include <memory>
 #include <stdexcept>
 
+/**
+ * @brief Linked list data structure
+ * 
+ * @tparam T Data type of the list
+ */
 template <class T>
 class LinkedList
 {
@@ -15,9 +20,31 @@ class LinkedList
 
   public:
 	LinkedList<T>();
+	/**
+	 * @brief Inserts a node to the end of the list
+	 * 
+	 * @param value 
+	 */
 	void insert(T value);
+
+	/**
+	 * @brief Adds a node at the specified index
+	 * 
+	 * @param value 
+	 * @param index 
+	 */
 	void insert(T value, int index);
+
+	/**
+	 * @brief Removes a node at the specified index
+	 * 
+	 * @param index 
+	 */
 	void remove(int index);
+
+	/**
+	 * @return int List size
+	 */
 	int size();
 	friend std::ostream &operator<<(std::ostream &os, const LinkedList<T> &list)
 	{
@@ -72,7 +99,7 @@ void LinkedList<T>::insert(T value, int index)
 	if (_head == nullptr) { _head = new_node; }
 	else if (index == 0)
 	{
-		new_node.get()->set_next(_head);
+		new_node->set_next(_head);
 		_head = new_node;
 	}
 	else if (index == _size) { this->insert(value); }
